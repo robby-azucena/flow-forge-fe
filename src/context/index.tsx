@@ -7,7 +7,6 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v16-appRouter";
 import MuiThemeProvider from "./MuiThemeProvider";
 import SnackbarProvider from "./SnackbarProvider";
 import Background from "@/shared/ui/Background";
-import { Box } from "@mui/material";
 
 interface PropType {
   children: ReactNode;
