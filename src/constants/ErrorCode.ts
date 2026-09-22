@@ -1,0 +1,7 @@
+export const STATUS_UNAUTHORIZED = 401;
+export const STATUS_FORBIDDEN = 403;
+export const STATUS_PAGE_NOT_FOUND = 404;
+export const STATUS_SERVER_ERROR = 500;
+export const STATUS_BAD_GATEWAY = 502;
+
+export const STATUS_ERR_CANCELLED = "ERR_CANCELED";

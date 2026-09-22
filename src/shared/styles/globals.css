@@ -1,5 +1,45 @@
 @import "tailwindcss";
 
 * {
-  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+.paper-1 {
+  background: linear-gradient(90deg, #170194 0%, #008fe9 100%);
+  width: calc(100vw + 500px);
+  height: calc(100vh + 500px);
+  border-radius: 2.5rem;
+  z-index: -1;
+
+  animation: paper1 1s ease-in-out forwards;
+}
+
+.paper-2 {
+  z-index: -2;
+  background: #00efe8;
+  border-radius: 2.5rem;
+  width: calc(100vw + 500px);
+  height: calc(100vh + 500px);
+
+  animation: paper2 1s ease-in-out 0.5s forwards;
+}
+
+@keyframes paper1 {
+  0% {
+    transform: translateX(0%) translateY(0%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateX(3%) translateY(-51%) rotate(21deg);
+  }
+}
+
+@keyframes paper2 {
+  0% {
+    transform: translateX(0%) translateY(0%) rotate(0deg);
+  }
+
+  100% {
+    transform: translateX(19%) translateY(-33%) rotate(21deg);
+  }
 }
