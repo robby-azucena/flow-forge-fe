@@ -1,13 +1,9 @@
 "use client";
 
 import { Box, useMediaQuery } from "@mui/material";
-import { useColorScheme } from "@mui/material/styles";
-import { themeResolver } from "../functions/themeResolver";
 
 const Background = () => {
-  const { mode } = useColorScheme();
   const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
-  const resolved = themeResolver(prefersDark, mode, "light");
 
   const CONSTANT_STYLE = {
     position: "absolute",
@@ -28,11 +24,11 @@ const Background = () => {
               "radial-gradient(circle,rgba(0, 183, 255, 1) 0%, rgba(0, 0, 0, 0) 50%)",
             filter: "blur(50px)",
             transform: "translate(-50%, -50%)",
-            height: resolved === "light" ? "100rem" : "200rem",
-            width: resolved === "light" ? "100rem" : "200rem",
-            top: resolved === "light" ? "70%" : "-10%",
-            left: resolved === "light" ? "5%" : "105%",
-            opacity: resolved === "light" ? "40%" : "100%",
+            height: !prefersDark ? "100rem" : "200rem",
+            width: !prefersDark ? "100rem" : "200rem",
+            top: !prefersDark ? "70%" : "-10%",
+            left: !prefersDark ? "5%" : "105%",
+            opacity: !prefersDark ? "40%" : "100%",
           },
         ]}
       />
@@ -46,11 +42,11 @@ const Background = () => {
               "radial-gradient(circle,rgba(255, 0, 247, 1) 0%, rgba(0, 0, 0, 0) 50%)",
             filter: "blur(50px)",
             transform: "translate(50%, 50%)",
-            height: resolved === "light" ? "100rem" : "200rem",
-            width: resolved === "light" ? "100rem" : "200rem",
-            bottom: resolved === "light" ? "10%" : "-50%",
-            right: resolved === "light" ? "1%" : "80%",
-            opacity: resolved === "light" ? "40%" : "70%",
+            height: !prefersDark ? "100rem" : "200rem",
+            width: !prefersDark ? "100rem" : "200rem",
+            bottom: !prefersDark ? "10%" : "-50%",
+            right: !prefersDark ? "1%" : "80%",
+            opacity: !prefersDark ? "40%" : "70%",
           },
         ]}
       />

@@ -23,7 +23,7 @@ api.interceptors.response.use(
       originalRequest._retry = true;
     }
 
-    return Promise.reject(error);
+    throw error;
   },
 );
 

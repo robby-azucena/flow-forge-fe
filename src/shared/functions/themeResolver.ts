@@ -2,17 +2,6 @@ import { STATUS_COLOR } from "@/constants/Colors";
 import { AlertColor } from "@mui/material/Alert";
 import { ThemeType } from "../types/App";
 
-export const themeResolver = (
-  prefersDark: boolean,
-  mode?: "light" | "dark" | "system",
-  override?: "light" | "dark",
-): "light" | "dark" => {
-  if (override) return override;
-  if (mode === "system") return prefersDark ? "dark" : "light";
-  if (mode === "dark") return "dark";
-  return "light";
-};
-
 export const getSnackbarColor = (
   type: AlertColor,
   theme: ThemeType,

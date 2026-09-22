@@ -51,12 +51,12 @@ const SnackbarProvider: FC<{ children: ReactNode }> = ({ children }) => {
         autoHideDuration={3000}
         onClose={() => setSnackbarState({ ...snackbarState, open: false })}
         anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        // sx={{
-        //   "& .MuiPaper-root": {
-        //     backgroundColor: "transparent",
-        //     boxShadow: "none",
-        //   },
-        // }}
+        sx={{
+          "& .MuiPaper-root": {
+            backgroundColor: "transparent",
+            boxShadow: "none",
+          },
+        }}
       >
         <Box
           className="flex self-stretch gap-2 items-center min-w-76 min-h-14 p-2"
