@@ -7,7 +7,7 @@ import { METADATA } from "@/constants/Metadata";
 import ProviderContainer from "@/context";
 
 const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grostesk",
+  variable: "--font-space-grotesk",
   subsets: ["latin"],
 });
 

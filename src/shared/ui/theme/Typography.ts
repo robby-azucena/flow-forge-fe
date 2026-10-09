@@ -232,6 +232,7 @@ declare module "@mui/material/Typography" {
   }
 }
 
+const HEAD_FONT_FAMILY = "var(--font-space-grotesk)"
 const FONT_FAMILY = "var(--font-hanken-grotesk)";
 
 const TYPOGRAPHY:

@@ -1,9 +1,11 @@
 "use client";
 
 import { Box, useMediaQuery } from "@mui/material";
+import { DARK_SCHEME, LIGHT_SCHEME } from "./theme/ColorScheme";
 
 const Background = () => {
-  const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
+    const prefersDark = useMediaQuery("(prefers-color-scheme: dark)");
+    const {background} = prefersDark ? DARK_SCHEME : LIGHT_SCHEME
 
   const CONSTANT_STYLE = {
     position: "absolute",
@@ -14,7 +16,7 @@ const Background = () => {
   };
 
   return (
-    <Box className="absolute top-0 left-0 h-dvh w-dvw -z-20">
+    <Box className="absolute top-0 left-0 h-dvh w-dvw -z-20" sx={{backgroundColor: background?.default}}>
       <Box
         id="glow-1"
         sx={[
