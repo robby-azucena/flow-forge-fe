@@ -51,7 +51,7 @@ const Login = () => {
                           type='submit'
                           label="Sign In"
                           isLoading={isLoading}
-                          disabled={isSubmitSuccessful || isSubmitting}
+                          disabled={ isSubmitting}
                       />
                   </div>
                 </form>
