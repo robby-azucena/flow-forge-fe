@@ -20,14 +20,16 @@ type Proptype<T extends FieldValues> = {
 const PasswordField = <T extends FieldValues>({
   label,
   labelHtmlFor,
-  placeholder,
+  placeholder = "Enter Password",
   control,
   name,
-  isSubmitting,
+    isSubmitting,
+  ...props
 }: Proptype<T>) => {
   const [isRevealed, setRevealed] = useState<boolean>(false);
   return (
-    <TextField
+      <TextField
+          {...props}
       label={label}
       disabled={isSubmitting}
       labelHtmlFor={labelHtmlFor}

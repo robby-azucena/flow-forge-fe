@@ -9,30 +9,30 @@ import SnackbarProvider from "./SnackbarProvider";
 import Background from "@/shared/ui/Background";
 
 interface PropType {
-  children: ReactNode;
+    children: ReactNode;
 }
 
 const ProviderContainer = ({ children }: PropType) => {
-  const queryClient = new QueryClient({
-    defaultOptions: {
-      queries: {
-        refetchOnWindowFocus: false,
-      },
-    },
-  });
-  return (
-    <AppRouterCacheProvider>
-      <QueryClientProvider client={queryClient}>
-        <MuiThemeProvider>
-          <SnackbarProvider>
-            <Background />
+    const queryClient = new QueryClient({
+        defaultOptions: {
+            queries: {
+                refetchOnWindowFocus: false,
+            },
+        },
+    });
+    return (
+        <AppRouterCacheProvider>
+            <QueryClientProvider client={queryClient}>
+                <MuiThemeProvider>
+                    <SnackbarProvider>
+                        <Background />
 
-            {children}
-          </SnackbarProvider>
-        </MuiThemeProvider>
-      </QueryClientProvider>
-    </AppRouterCacheProvider>
-  );
+                        <main className="w-dvw h-dvh flex self-stretch overflow-hidden">{children}</main>
+                    </SnackbarProvider>
+                </MuiThemeProvider>
+            </QueryClientProvider>
+        </AppRouterCacheProvider>
+    );
 };
 
 export default ProviderContainer;

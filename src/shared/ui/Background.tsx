@@ -11,8 +11,8 @@ const Background = () => {
     position: "absolute",
     borderRadius: "1000rem",
 
-    // transition:
-    //   "top 2s ease, left 2s ease, right 2s ease, bottom 2s ease, height 2s ease, width 2s ease",
+    transition:
+      "top 2s ease, left 2s ease, right 2s ease, bottom 2s ease, height 2s ease, width 2s ease",
   };
 
   return (
@@ -23,13 +23,13 @@ const Background = () => {
           CONSTANT_STYLE,
           {
             background:
-              "radial-gradient(circle,rgba(0, 183, 255, 1) 0%, rgba(0, 0, 0, 0) 50%)",
+              "radial-gradient(circle,#00f0ff 0%, rgba(0, 0, 0, 0) 50%)",
             filter: "blur(50px)",
             transform: "translate(-50%, -50%)",
             height: !prefersDark ? "100rem" : "200rem",
             width: !prefersDark ? "100rem" : "200rem",
-            top: !prefersDark ? "70%" : "-10%",
-            left: !prefersDark ? "5%" : "105%",
+            top: !prefersDark ? "50%" : "-10%",
+            left: !prefersDark ? "20%" : "105%",
             opacity: !prefersDark ? "40%" : "100%",
           },
         ]}
@@ -41,7 +41,7 @@ const Background = () => {
           CONSTANT_STYLE,
           {
             background:
-              "radial-gradient(circle,rgba(255, 0, 247, 1) 0%, rgba(0, 0, 0, 0) 50%)",
+              "radial-gradient(circle,#00f0ff 0%, rgba(0, 0, 0, 0) 50%)",
             filter: "blur(50px)",
             transform: "translate(50%, 50%)",
             height: !prefersDark ? "100rem" : "200rem",
