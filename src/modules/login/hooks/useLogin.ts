@@ -3,7 +3,7 @@ import { loginSchema, LoginSchemaType } from "../schemas/LoginForm.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import loginUser from "../services/loginUser";
 import { useSnackbar } from "@/context/SnackbarContext";
-import { AxiosError, isAxiosError } from "axios";
+import {  isAxiosError } from "axios";
 
 const useLogin = () => {
     const { control, handleSubmit, getValues, reset, formState } =

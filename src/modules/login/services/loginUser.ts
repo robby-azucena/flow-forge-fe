@@ -4,7 +4,7 @@ const loginUser = async (email: string, password: string) => {
 
         return await axios({
             method: "POST",
-            url: "/api/token",
+            url: "/api/requests/token",
             data: {
                 email_address: email,
                 password: password,
