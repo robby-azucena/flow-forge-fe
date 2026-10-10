@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FlowForge Frontend
 
-## Getting Started
+FlowForge is the frontend client for the FlowForge platform, built using a modern, component-driven architecture.
 
-First, run the development server:
+## 🚀 Project Setup
+
+First, install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
 # or
-yarn dev
-# or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To run the application in production, execute:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+npm run start
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Open `http://localhost:3000` to view the application.
 
-## Learn More
+## 💻 Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+This project utilizes the following software and libraries:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Category | Technology | Purpose |
+| :--- | :--- | :--- |
+| Framework | Next.js | React framework for server-side rendering and routing. |
+| Language | TypeScript / JavaScript | Primary coding language for strong typing. |
+| UI Library | Material-UI (MUI) | Component library for a cohesive and polished UI. |
+| Styling | Tailwind CSS | Utility-first CSS framework for rapid styling. |
+| State Management | React Query (TanStack) | Handling asynchronous state, caching, and data fetching. |
+| Forms | React Hook Form & Yup | Managing complex form inputs and validation. |
+| Networking | Axios | HTTP client for API communication. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📚 Development & Usage
 
-## Deploy on Vercel
+You can begin by editing files in the `src` directory.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To learn more about Next.js development, consult the official documentation.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+You can also check out the Next.js GitHub repository for updates and contributions.
