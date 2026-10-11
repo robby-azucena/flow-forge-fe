@@ -57,7 +57,7 @@ const SnackbarProvider: FC<{ children: ReactNode }> = ({ children }) => {
             boxShadow: "none",
           },
         }}
-      >
+          >
         <Box
           className="flex self-stretch gap-2 items-center min-w-76 min-h-14 p-2"
           sx={{
