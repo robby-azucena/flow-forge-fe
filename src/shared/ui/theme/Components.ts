@@ -34,6 +34,13 @@ const MUI_COMPONENTS: Components<
               ? TEXT_COLOR.light.whisper
               : TEXT_COLOR.dark.whisper,
         },
+
+        "& .MuiInput-input.Mui-disabled": {
+          WebkitTextFillColor:
+            theme.palette.mode === "light"
+              ? TEXT_COLOR.light.disabled
+              : TEXT_COLOR.dark.disabled,
+        },
       }),
     },
   },

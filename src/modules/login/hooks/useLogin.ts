@@ -4,8 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import loginUser from "../services/loginUser";
 import { useSnackbar } from "@/context/SnackbarContext";
 import {  isAxiosError } from "axios";
+import { useState } from "react";
 
 const useLogin = () => {
+  const [loggedIn, setLoggedIn] = useState<boolean>(false)
     const { control, handleSubmit, getValues, reset, formState } =
         useForm<LoginSchemaType>({
             resolver: yupResolver(loginSchema),
@@ -22,8 +24,8 @@ const useLogin = () => {
         password,
     }) => {
         try {
-            const res = await loginUser(email, password);
-            console.log(res);
+           await loginUser(email, password);
+            setLoggedIn(true)
         } catch (err) {
             if (isAxiosError(err)) {
             }
@@ -46,7 +48,8 @@ const useLogin = () => {
             handleSubmit,
             formState,
             onSubmit,
-        },
+      },
+      loggedIn
     };
 };
 

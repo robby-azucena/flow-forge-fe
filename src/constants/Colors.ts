@@ -17,14 +17,14 @@ export const TEXT_COLOR = {
     clearer: "#42594A",
     clear: "#6C7870",
     whisper: "#A9ABAD",
-    disabled: "#F6F6F6",
+    disabled: "#BABABA",
   },
   dark: {
     clearest: "#FFFFFF",
     clearer: "#F2FFF4",
     clear: "#E6F2EB",
     whisper: "#6e757a",
-    disabled: "#F6F6F6",
+    disabled: "#5B5B5B",
   },
 };
 

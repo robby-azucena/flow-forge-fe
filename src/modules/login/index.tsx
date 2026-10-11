@@ -9,9 +9,9 @@ import PasswordField from "@/shared/ui/textfields/PasswordField";
 import PrimaryButton from "@/shared/ui/buttons/PrimaryButton";
 
 const Login = () => {
-    const { hookForm } = useLogin();
+    const { hookForm, loggedIn } = useLogin();
     const { control, formState , handleSubmit, onSubmit} = hookForm;
-    const { isSubmitting, isLoading, isSubmitSuccessful } = formState;
+    const { isSubmitting, isLoading } = formState;
 
     return (
         <main className="p-4 flex flex-col w-full h-full items-center self-stretch justify-center">
@@ -35,13 +35,13 @@ const Login = () => {
                             labelHtmlFor="Email Address"
                             name={"email"}
                             control={control}
-                            isSubmitting={isSubmitting}
+                            isSubmitting={isSubmitting || loggedIn}
                         />
                         <PasswordField
                             label="Password"
                             labelHtmlFor="Password"
                             control={control}
-                            isSubmitting={isSubmitting}
+                            isSubmitting={isSubmitting || loggedIn}
                             name={"password"}
                         />
 
@@ -51,7 +51,7 @@ const Login = () => {
                           type='submit'
                           label="Sign In"
                           isLoading={isLoading}
-                          disabled={ isSubmitting}
+                          disabled={ isSubmitting || loggedIn}
                       />
                   </div>
                 </form>
