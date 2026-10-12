@@ -1,3 +1,4 @@
+'use client'
 import { GLASS_STYLES } from "@/constants/Colors";
 import { Box, BoxProps } from "@mui/material";
 import { motion, MotionProps } from "framer-motion";
