@@ -3,6 +3,9 @@ import logoutHandler from "@/shared/functions/logoutHandler";
 import Container from "../Container";
 import { RADIUS } from "@/constants/Radius";
 import AppLogo from "../applogo";
+import PrimaryIconButton from "../buttons/IconButton";
+
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const HeaderNav = () => {
   return (
@@ -15,7 +18,9 @@ const HeaderNav = () => {
         <div id="logo-container" className="flex w-full max-w-40 h-auto">
           <AppLogo />
         </div>
-        <button onClick={() => logoutHandler()}>logout</button>
+        <PrimaryIconButton onClick={() => logoutHandler()}>
+          <LogoutIcon fontSize="medium" color="textError" />
+        </PrimaryIconButton>
       </Container>
     </nav>
   );

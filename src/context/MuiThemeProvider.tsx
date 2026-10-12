@@ -31,6 +31,13 @@ declare module "@mui/material/styles" {
     whisper: string;
     error: string;
   }
+  
+}
+
+declare module '@mui/material/SvgIcon' {
+  interface SvgIconPropsColorOverrides {
+    textError: true;
+  }
 }
 
 const MuiThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
