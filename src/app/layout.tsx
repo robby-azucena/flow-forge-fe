@@ -19,6 +19,13 @@ const hankenGrotesk = Hanken_Grotesk({
 export const metadata: Metadata = {
   title: METADATA.title,
   description: METADATA.description,
+  openGraph:{
+    title: METADATA.title,
+    description: METADATA.description,
+    type:'website',
+    images: "/img/og-image.jpg",
+    siteName:"FlowForge"
+  }
 };
 
 interface PropType {
