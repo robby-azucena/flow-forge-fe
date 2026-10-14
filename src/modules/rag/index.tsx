@@ -1,15 +1,23 @@
-'use client'
+"use client";
 import { ANIM_FADE } from "@/constants/Animation";
 import Container from "@/shared/ui/Container";
 import ResumeForm from "./components/Resume.form";
 import InformationForm from "./components/Information.form";
 import Typography from "@mui/material/Typography";
+import useRag from "./hooks/useRag";
 
 const Rag = () => {
+    const {} = useRag();
     return (
         <div className="flex flex-col self-stretch gap-4 w-full h-full overflow-hidden">
             <div className="px-4">
-                <Typography component="h1" variant="titleLightL" color="textClear">RAG Pipeline</Typography>
+                <Typography
+                    component="h1"
+                    variant="titleLightL"
+                    color="textClear"
+                >
+                    RAG Pipeline
+                </Typography>
             </div>
             <Container
                 component={"section"}
