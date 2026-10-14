@@ -2,10 +2,10 @@
 import { ANIM_FADE } from "@/constants/Animation";
 import { RADIUS } from "@/constants/Radius";
 import Container from "@/shared/ui/Container";
-import EmailField from "@/shared/ui/textfields/EmailField";
+import EmailField from "@/shared/ui/form/EmailField";
 import { Typography } from "@mui/material";
 import useLogin from "./hooks/useLogin";
-import PasswordField from "@/shared/ui/textfields/PasswordField";
+import PasswordField from "@/shared/ui/form/PasswordField";
 import PrimaryButton from "@/shared/ui/buttons/PrimaryButton";
 import AppLogo from "@/shared/ui/applogo";
 
