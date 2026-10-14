@@ -7,6 +7,7 @@ import { Typography } from "@mui/material";
 import useLogin from "./hooks/useLogin";
 import PasswordField from "@/shared/ui/textfields/PasswordField";
 import PrimaryButton from "@/shared/ui/buttons/PrimaryButton";
+import AppLogo from "@/shared/ui/applogo";
 
 const Login = () => {
     const { hookForm, loggedIn } = useLogin();
@@ -21,6 +22,9 @@ const Login = () => {
                 className="p-4 max-w-200 w-full gap-4 flex flex-col items-center "
                 sx={{ borderRadius: RADIUS.xxxLarge }}
             >
+                <div className="w-full max-w-120 h-auto">
+                    <AppLogo />
+                </div>
                 <Typography
                     component={"p"}
                     variant="descriptionBoldL"
