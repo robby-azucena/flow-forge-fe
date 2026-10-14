@@ -29,7 +29,7 @@ const PrimaryButton = ({ label, isLoading, ...props }: PropType) => {
           size={"1.5rem"}
         />
       )}
-      <Typography variant="interactionSemiboldL" sx={{ textTransform: "none" }}>
+      <Typography variant="interactionSemiboldL" sx={{ textTransform: "none", overflow:'hidden', textWrap:"nowrap", textOverflow:"ellipsis" }}>
         {label}
       </Typography>
     </Button>

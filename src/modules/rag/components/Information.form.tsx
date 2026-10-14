@@ -10,7 +10,7 @@ const InformationForm = () => {
       sx={{ borderRadius: RADIUS.xxxLarge }}
     >
       <Typography component="h2" variant="titleBoldS">
-        Information Form
+        2. Information Form
       </Typography>
     </Container>
   );

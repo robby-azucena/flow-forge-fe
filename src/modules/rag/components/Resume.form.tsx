@@ -1,19 +1,23 @@
 import { RADIUS } from "@/constants/Radius";
 import Container from "@/shared/ui/Container";
+import FileUploadField from "@/shared/ui/form/FileUploadField";
 import Typography from "@mui/material/Typography";
 
+const FILE_ACCEPT = ".pdf,application/pdf,.doc,.docx,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+
 const ResumeForm = () => {
-  return (
-    <Container
-      glass="base"
-      className="flex flex-col w-full p-4 self-stretch"
-      sx={{ borderRadius: RADIUS.xxxLarge }}
-    >
-      <Typography component="h2" variant="titleBoldS">
-        Resume Form
-      </Typography>
-    </Container>
-  );
+    return (
+        <Container
+            glass="base"
+            className="flex flex-col w-full p-4 self-stretch overflow-hidden"
+            sx={{ borderRadius: RADIUS.xxxLarge }}
+        >
+            <Typography component="label" variant="titleBoldS" color="textClearest">
+                1. Document to scan
+            </Typography>
+            <FileUploadField accept={FILE_ACCEPT} label="Attach document"  visibleList />
+        </Container>
+    );
 };
 
 export default ResumeForm;
