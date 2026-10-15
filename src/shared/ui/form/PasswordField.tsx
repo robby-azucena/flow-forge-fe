@@ -23,13 +23,13 @@ const PasswordField = <T extends FieldValues>({
   placeholder = "Enter Password",
   control,
   name,
-    isSubmitting,
+  isSubmitting,
   ...props
 }: Proptype<T>) => {
   const [isRevealed, setRevealed] = useState<boolean>(false);
   return (
-      <TextField
-          {...props}
+    <TextField
+      {...props}
       label={label}
       disabled={isSubmitting}
       labelHtmlFor={labelHtmlFor}
