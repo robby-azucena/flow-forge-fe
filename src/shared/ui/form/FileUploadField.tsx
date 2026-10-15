@@ -85,7 +85,7 @@ const FileUploadField = <T extends FieldValues>({
 
         <div className="flex flex-col self-stretch w-full">
           <PrimaryButton
-            variant="contained"
+            variant="outlined"
             onClick={() => inputRef.current?.click()}
             startIcon={<FileUploadIcon />}
             label={`${files.length === 0 ? "Browse" : "Replace"} File${multiple ? "s" : ""}`}

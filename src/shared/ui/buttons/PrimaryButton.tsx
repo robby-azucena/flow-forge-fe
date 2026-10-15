@@ -16,11 +16,11 @@ const PrimaryButton = ({ label, isLoading, ...props }: PropType) => {
   return (
     <Button
       variant="contained"
-      {...props}
       disableRipple
       disableElevation
       sx={{ borderRadius: RADIUS.roundest }}
       className={`min-w-33.25 min-h-9.5 relative`}
+      {...props}
     >
       {isLoading && (
         <CircularProgress
@@ -29,7 +29,15 @@ const PrimaryButton = ({ label, isLoading, ...props }: PropType) => {
           size={"1.5rem"}
         />
       )}
-      <Typography variant="interactionSemiboldL" sx={{ textTransform: "none", overflow:'hidden', textWrap:"nowrap", textOverflow:"ellipsis" }}>
+      <Typography
+        variant="interactionSemiboldL"
+        sx={{
+          textTransform: "none",
+          overflow: "hidden",
+          textWrap: "nowrap",
+          textOverflow: "ellipsis",
+        }}
+      >
         {label}
       </Typography>
     </Button>

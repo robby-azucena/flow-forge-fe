@@ -8,7 +8,11 @@ const RagForm = () => {
   const { hookForm, onSubmit } = useRagContext();
   const { handleSubmit } = hookForm;
   return (
-    <form id={"rag-form"} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className="flex flex-col self-stretch h-full w-full"
+      id={"rag-form"}
+      onSubmit={handleSubmit(onSubmit)}
+    >
       <Container
         component={"section"}
         {...ANIM_FADE}

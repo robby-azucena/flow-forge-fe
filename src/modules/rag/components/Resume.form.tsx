@@ -17,7 +17,7 @@ const ResumeForm = () => {
       className="flex flex-col w-full p-4 self-stretch overflow-hidden"
       sx={{ borderRadius: RADIUS.xxxLarge }}
     >
-      <Typography component="label" variant="titleBoldS" color="textClearest">
+      <Typography component="label" variant="labelL" color="textClearest">
         1. Document to scan
       </Typography>
       <FileUploadField
