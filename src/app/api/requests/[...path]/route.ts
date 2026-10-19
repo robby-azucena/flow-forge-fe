@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
 import rewriteSetCookie from "./services/rewriteSetCookie";
 import { STRIP_HEADERS } from "@/constants/Api";
+import { TOKEN } from "@/constants/App";
 
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL!;
 
@@ -10,7 +11,7 @@ const handler = async (
   req: NextRequest,
   { params }: { params: Promise<{ path: string[] }> },
 ) => {
-  const FORWARDED_COOKIES = new Set(["access_token", "refresh_token"]);
+  const FORWARDED_COOKIES = new Set([TOKEN.access, TOKEN.refresh]);
   const { path } = await params;
   const target = new URL(`${BASE_URL}${path.join("/")}/`);
 
@@ -22,11 +23,11 @@ const handler = async (
   STRIP_HEADERS.forEach((h) => headers.delete(h));
 
   const jar = await cookies();
-  const accessToken = jar.get("access_token")?.value;
-  const refreshToken = jar.get("refresh_token")?.value;
+  const accessToken = jar.get(TOKEN.access)?.value;
+  const refreshToken = jar.get(TOKEN.refresh)?.value;
 
   if (accessToken) headers.set("Authorization", `Bearer ${accessToken}`);
-  if (refreshToken) headers.set("cookie", `refresh_token=${refreshToken}`);
+  if (refreshToken) headers.set("cookie", `${TOKEN.refresh}=${refreshToken}`);
 
   const hasBody = !["GET", "HEAD"].includes(req.method);
 
