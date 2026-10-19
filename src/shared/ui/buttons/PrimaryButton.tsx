@@ -6,13 +6,16 @@ import {
   CircularProgress,
   Typography,
 } from "@mui/material";
+import { ReactNode } from "react";
 
 interface PropType extends ButtonProps {
   label?: string;
   isLoading?: boolean;
+  startIcon?: ReactNode;
+  endIcon?: ReactNode;
 }
 
-const PrimaryButton = ({ label, isLoading, ...props }: PropType) => {
+const PrimaryButton = ({ label, isLoading, startIcon, endIcon, ...props }: PropType) => {
   return (
     <Button
       variant="contained"
@@ -29,6 +32,7 @@ const PrimaryButton = ({ label, isLoading, ...props }: PropType) => {
           size={"1.5rem"}
         />
       )}
+      {startIcon}
       <Typography
         variant="interactionSemiboldL"
         sx={{
@@ -40,6 +44,7 @@ const PrimaryButton = ({ label, isLoading, ...props }: PropType) => {
       >
         {label}
       </Typography>
+      {endIcon}
     </Button>
   );
 };

@@ -54,7 +54,7 @@ const Login = () => {
                       <PrimaryButton
                           type='submit'
                           label="Sign In"
-                          isLoading={isLoading}
+                          isLoading={isSubmitting || isLoading || loggedIn}
                           disabled={ isSubmitting || loggedIn}
                       />
                   </div>
