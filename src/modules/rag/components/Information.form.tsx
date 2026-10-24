@@ -6,6 +6,7 @@ import PrimaryIconButton from "@/shared/ui/buttons/IconButton";
 
 import SendIcon from "@mui/icons-material/Send";
 import PrimaryButton from "@/shared/ui/buttons/PrimaryButton";
+import "../styles/fade-container.css";
 
 const InformationForm = () => {
   const { hookForm } = useRagContext();
@@ -13,13 +14,21 @@ const InformationForm = () => {
   return (
     <Container
       glass="base"
-      className="flex flex-col w-full p-4 self-stretch gap-4"
+      className="flex flex-col w-full p-4 self-stretch"
       sx={{ borderRadius: RADIUS.xxxLarge }}
     >
       <Typography component="label" variant="labelL" color="textClearest">
         2. Extract information
       </Typography>
-      <div className="flex flex-col self-stretch h-full w-full bg-amber-50"></div>
+      <div className="scroll-fade overflow-hidden overflow-y-auto py-4 h-full">
+        <Typography
+          component="label"
+          variant="descriptionBoldL"
+          color="textClearest"
+        >
+          Type type
+        </Typography>
+      </div>
 
       <Container
         glass="base"

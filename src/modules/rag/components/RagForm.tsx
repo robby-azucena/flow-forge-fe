@@ -9,7 +9,7 @@ const RagForm = () => {
   const { handleSubmit } = hookForm;
   return (
     <form
-      className="flex flex-col self-stretch h-full w-full"
+      className="flex flex-col self-stretch h-full w-full overflow-hidden"
       id={"rag-form"}
       onSubmit={handleSubmit(onSubmit)}
     >

@@ -1,0 +1,21 @@
+.scroll-fade {
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+
+  --fade: 40px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black var(--fade),
+    black calc(100% - var(--fade)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0,
+    black var(--fade),
+    black calc(100% - var(--fade)),
+    transparent 100%
+  );
+}
