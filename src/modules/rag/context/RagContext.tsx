@@ -5,15 +5,18 @@ interface RagContextType {
   hookForm: UseFormReturn<
     {
       files: (File | undefined)[];
+      query: string;
     },
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     any,
     {
       files: (File | undefined)[];
+      query: string;
     }
   >;
   onSubmit: SubmitHandler<{
     files: (File | undefined)[];
+    query: string;
   }>;
 }
 

@@ -8,13 +8,14 @@ const useRag = () => {
     resolver: yupResolver(ragSchema),
     defaultValues: {
       files: [],
+      query: "",
     },
   });
 
   const showSnackbar = useSnackbar();
 
-  const onSubmit: SubmitHandler<RagSchemaType> = async ({ files }) => {
-    console.log(files);
+  const onSubmit: SubmitHandler<RagSchemaType> = async ({ files, query }) => {
+    console.log(files, query);
   };
 
   return {

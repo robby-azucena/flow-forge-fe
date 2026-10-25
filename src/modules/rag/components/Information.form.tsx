@@ -7,10 +7,11 @@ import PrimaryIconButton from "@/shared/ui/buttons/IconButton";
 import SendIcon from "@mui/icons-material/Send";
 import PrimaryButton from "@/shared/ui/buttons/PrimaryButton";
 import "../styles/fade-container.css";
+import TextAreaField from "@/shared/ui/form/TextAreaField";
 
 const InformationForm = () => {
   const { hookForm } = useRagContext();
-  const { getValues } = hookForm;
+  const { getValues, control } = hookForm;
   return (
     <Container
       glass="base"
@@ -35,13 +36,9 @@ const InformationForm = () => {
         className="flex gap-4 items-center-safe w-full p-4 self-stretch"
         sx={{ borderRadius: RADIUS.xxLarge }}
       >
-        <TextareaAutosize
-          placeholder="Enter the information you need"
-          className="w-full max-h-20"
-          minRows={1}
-          maxRows={3}
-        />
+        <TextAreaField control={control} name={"query"} />
         <PrimaryButton
+          type="submit"
           label="Send"
           className="w-full max-w-30"
           color="primary"
