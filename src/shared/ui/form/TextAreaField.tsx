@@ -1,5 +1,5 @@
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
-import TextareaAutosize from "@mui/material/TextareaAutosize";
+import { TextField } from "@mui/material";
 
 interface PropType<T extends FieldValues> {
   name: Path<T>;
@@ -19,11 +19,12 @@ const TextAreaField = <T extends FieldValues>({
       name={name}
       control={control}
       render={({ field }) => (
-        <TextareaAutosize
+        <TextField
           {...field}
+          multiline
           disabled={disabled}
           placeholder={placeholder}
-          className="w-full max-h-20"
+          className="w-full"
           minRows={3}
           maxRows={3}
         />

@@ -36,7 +36,11 @@ const InformationForm = () => {
         className="flex gap-4 items-center-safe w-full p-4 self-stretch"
         sx={{ borderRadius: RADIUS.xxLarge }}
       >
-        <TextAreaField control={control} name={"query"} />
+        <TextAreaField
+          control={control}
+          name={"query"}
+          placeholder={"Enter the information you need"}
+        />
         <PrimaryButton
           type="submit"
           label="Send"

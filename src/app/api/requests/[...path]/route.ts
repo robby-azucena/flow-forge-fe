@@ -16,7 +16,10 @@ const toResponse = (upstream: AxiosResponse) => {
   Object.entries(upstream.headers).forEach(([key, value]) => {
     if (value === undefined || value === null) return;
     if (key.toLowerCase() === "set-cookie") return; // handled below
-    resHeaders.set(key, Array.isArray(value) ? value.join(", ") : String(value));
+    resHeaders.set(
+      key,
+      Array.isArray(value) ? value.join(", ") : String(value),
+    );
   });
 
   STRIP_HEADERS.forEach((h) => resHeaders.delete(h));
@@ -69,13 +72,13 @@ const handler = async (
 
   try {
     const upstream = await api.request({
-      url: `${path.join("/")}/`,
+      url: path.join("/"),
       method: req.method,
       params: query,
       headers,
       data: hasBody ? Buffer.from(await req.arrayBuffer()) : undefined,
       responseType: "stream",
-      maxRedirects: 0, 
+      maxRedirects: 0,
       validateStatus: (status) => status < 400,
     });
 

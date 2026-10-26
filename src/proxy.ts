@@ -8,15 +8,16 @@ export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const accessToken = request.cookies.get(TOKEN.access);
+  const refreshToken = request.cookies.get(TOKEN.refresh);
 
   // NOTE - For API routes
-  if (PUBLIC_PATH.includes(pathname) && accessToken) {
+  if (PUBLIC_PATH.includes(pathname) && (accessToken || refreshToken)) {
     return NextResponse.redirect(new URL(PATHNAMES.app, request.url));
   } else if (PUBLIC_PATH.includes(pathname) && !accessToken) {
     NextResponse.next();
-  } else if (PRIVATE_PATH.includes(pathname) && !accessToken) {
+  } else if (PRIVATE_PATH.includes(pathname) && !accessToken && !refreshToken) {
     return NextResponse.redirect(new URL(PATHNAMES.login, request.url));
-  } 
+  }
 
   return NextResponse.next();
 }
