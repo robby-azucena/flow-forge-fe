@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { SubmitHandler, UseFormReturn } from "react-hook-form";
 
 interface RagContextType {
+  response: string | null;
   hookForm: UseFormReturn<
     {
       files: (File | undefined)[];

@@ -4,8 +4,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useSnackbar } from "@/context/SnackbarContext";
 import sendData from "../services/sendData";
 import { AxiosError, isAxiosError } from "axios";
+import { useState } from "react";
 
 const useRag = () => {
+  const [response, setResponse] = useState<string | null>(null);
   const hookForm = useForm<RagSchemaType>({
     resolver: yupResolver(ragSchema),
     defaultValues: {
@@ -19,12 +21,13 @@ const useRag = () => {
   const onSubmit: SubmitHandler<RagSchemaType> = async (data) => {
     try {
       const res = await sendData(data);
-      console.log(res);
+      setResponse(res.answer);
     } catch (err) {
       if (isAxiosError(err)) {
         const error = err as AxiosError;
 
         console.log(error.response);
+        showSnackbar("Failed to send data", "error");
       } else {
         console.log(err);
       }
@@ -32,6 +35,7 @@ const useRag = () => {
   };
 
   return {
+    response,
     hookForm,
     onSubmit,
   };

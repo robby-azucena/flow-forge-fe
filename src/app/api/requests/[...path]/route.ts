@@ -72,7 +72,7 @@ const handler = async (
 
   try {
     const upstream = await api.request({
-      url: path.join("/"),
+      url: `${path.join("/")}/`,
       method: req.method,
       params: query,
       headers,

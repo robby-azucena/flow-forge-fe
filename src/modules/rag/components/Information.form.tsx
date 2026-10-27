@@ -10,7 +10,7 @@ import "../styles/fade-container.css";
 import TextAreaField from "@/shared/ui/form/TextAreaField";
 
 const InformationForm = () => {
-  const { hookForm } = useRagContext();
+  const { hookForm, response } = useRagContext();
   const { getValues, control } = hookForm;
   return (
     <Container
@@ -22,13 +22,15 @@ const InformationForm = () => {
         2. Extract information
       </Typography>
       <div className="scroll-fade overflow-hidden overflow-y-auto py-4 h-full">
-        <Typography
-          component="label"
-          variant="descriptionBoldL"
-          color="textClearest"
-        >
-          Type type
-        </Typography>
+        {response && (
+          <Typography
+            component="label"
+            variant="descriptionBoldL"
+            color="textClearest"
+          >
+            {response}
+          </Typography>
+        )}
       </div>
 
       <Container
