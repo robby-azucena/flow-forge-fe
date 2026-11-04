@@ -10,6 +10,7 @@ import { PATHNAMES } from "@/constants/Pathnames";
 
 const useLogin = () => {
   const router = useRouter();
+  const [tab, setTab] = useState<"signin" | "signup">("signin");
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
   const { control, handleSubmit, getValues, reset, formState } =
     useForm<LoginSchemaType>({
@@ -29,7 +30,7 @@ const useLogin = () => {
     try {
       await loginUser(email, password);
       setLoggedIn(true);
-      router.push(PATHNAMES.login)
+      router.push(PATHNAMES.login);
     } catch (err) {
       if (isAxiosError(err)) {
       }
@@ -47,6 +48,10 @@ const useLogin = () => {
   };
 
   return {
+    tabControl: {
+      tab,
+      setTab,
+    },
     hookForm: {
       control,
       handleSubmit,
