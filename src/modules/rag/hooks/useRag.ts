@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const useRag = () => {
   const [response, setResponse] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const hookForm = useForm<RagSchemaType>({
     resolver: yupResolver(ragSchema),
     defaultValues: {
@@ -19,9 +20,13 @@ const useRag = () => {
   const showSnackbar = useSnackbar();
 
   const onSubmit: SubmitHandler<RagSchemaType> = async (data) => {
+    if (data.files.length === 0)
+      return showSnackbar("No document attached to analyze", "error");
     try {
+      setIsLoading(true);
       const res = await sendData(data);
       setResponse(res.answer);
+      setIsLoading(false);
     } catch (err) {
       if (isAxiosError(err)) {
         const error = err as AxiosError;
@@ -38,6 +43,7 @@ const useRag = () => {
     response,
     hookForm,
     onSubmit,
+    isLoading,
   };
 };
 

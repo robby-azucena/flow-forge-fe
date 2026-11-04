@@ -10,7 +10,7 @@ const Rag = () => {
       <div className="flex flex-col self-stretch gap-4 w-full h-full overflow-hidden">
         <div className="px-4">
           <Typography component="h1" variant="titleLightL" color="textClear">
-            RAG Pipeline
+            Analyze the document
           </Typography>
         </div>
         <RagForm />

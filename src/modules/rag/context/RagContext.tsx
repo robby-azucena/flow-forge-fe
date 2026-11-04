@@ -19,6 +19,7 @@ interface RagContextType {
     files: (File | undefined)[];
     query: string;
   }>;
+  isLoading: boolean;
 }
 
 export const RagContext = createContext<RagContextType | undefined>(undefined);
