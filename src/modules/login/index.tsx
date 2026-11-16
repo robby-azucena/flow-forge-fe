@@ -1,4 +1,4 @@
-"use client";
+'use client'
 import { ANIM_FADE } from "@/constants/Animation";
 import { RADIUS } from "@/constants/Radius";
 import Container from "@/shared/ui/Container";
@@ -10,9 +10,12 @@ import PrimaryButton from "@/shared/ui/buttons/PrimaryButton";
 import AppLogo from "@/shared/ui/applogo";
 import TextButton from "@/shared/ui/buttons/TextButton";
 import { AnimatePresence, motion } from "framer-motion";
+import SignupForm from "./components/SignupForm";
 
 const Login = () => {
-  const { hookForm, loggedIn, tabControl } = useLogin();
+  const { hookForm, loggedIn, tabControl,
+    passwordHookForm
+   } = useLogin();
   const { control, formState, handleSubmit, onSubmit } = hookForm;
   const { tab, setTab } = tabControl;
   const { isSubmitting, isLoading } = formState;
@@ -76,11 +79,10 @@ const Login = () => {
             </motion.form>
           ) : (
             <motion.div {...ANIM_FADE} key="signup-2">
-              <TextButton
-                onClick={() => setTab("signin")}
-                label="Go Back"
-                isLoading={isSubmitting || isLoading || loggedIn}
-                disabled={isSubmitting || loggedIn}
+              <SignupForm
+                passwordHookForm={passwordHookForm}
+                onBack={() => setTab("signin")}
+                isSubmitting={isSubmitting || isLoading || loggedIn}
               />
             </motion.div>
           )}

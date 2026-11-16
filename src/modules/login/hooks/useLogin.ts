@@ -1,5 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { loginSchema, LoginSchemaType } from "../schemas/LoginForm.schema";
+import { signupSchema, SignupSchemaType } from "../schemas/SignupForm.schema";
 import { yupResolver } from "@hookform/resolvers/yup";
 import loginUser from "../services/loginUser";
 import { useSnackbar } from "@/context/SnackbarContext";
@@ -21,6 +22,19 @@ const useLogin = () => {
       },
     });
 
+  const { control: signupControl, handleSubmit: signupHandleSubmit,
+    getValues: signupGetValues, reset: signupReset, formState: signupFormState } =
+    useForm<SignupSchemaType>({
+      resolver: yupResolver(signupSchema),
+      defaultValues: {
+        firstName: "",
+        lastName: "",
+        emailAddress: "",
+        password: "",
+        confirmPassword: "",
+      },
+    });
+
   const showSnackbar = useSnackbar();
 
   const onSubmit: SubmitHandler<LoginSchemaType> = async ({
@@ -33,18 +47,25 @@ const useLogin = () => {
       router.push(PATHNAMES.login);
     } catch (err) {
       if (isAxiosError(err)) {
+        // handle axios error
       }
       reset({ ...getValues(), password: "" });
       showSnackbar("Login Failed", "error");
     }
-    //         try {
-    //             await loginUser(username, password, code);
-    //
-    //             router.replace(NAVIGATION.admin.dashboard.liveTrafic);
-    //         } catch {
-    //             reset({ ...getValues(), password: "", code: "" });
-    //             showSnackbar("Login Failed!", "error");
-    //         }
+  };
+
+  const onSignupSubmit: SubmitHandler<SignupSchemaType> = async (data) => {
+    try {
+      // logic for signup goes here
+      // e.g., await signupUser(data);
+      showSnackbar("Signup Successful", "success");
+    } catch (err) {
+      if (isAxiosError(err)) {
+        // handle error
+      }
+      signupReset({ ...signupGetValues(), password: "", confirmPassword: "" });
+      showSnackbar("Signup Failed", "error");
+    }
   };
 
   return {
@@ -57,6 +78,12 @@ const useLogin = () => {
       handleSubmit,
       formState,
       onSubmit,
+    },
+    passwordHookForm: {
+      control: signupControl,
+      handleSubmit: signupHandleSubmit,
+      formState: signupFormState,
+      onSubmit: onSignupSubmit,
     },
     loggedIn,
   };
