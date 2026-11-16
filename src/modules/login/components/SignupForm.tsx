@@ -79,8 +79,9 @@ const SignupForm = ({
   const { isSubmitting: isSignupSubmitting } = formState;
 
   return (
-    <motion.div
+    <motion.form
       {...ANIM_FADE}
+      onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col items-center gap-8 max-w-100 w-full"
     >
       <Typography
@@ -144,7 +145,7 @@ const SignupForm = ({
           disabled={isSignupSubmitting}
         />
       </div>
-    </motion.div>
+    </motion.form>
   );
 };
 
