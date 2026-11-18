@@ -14,10 +14,15 @@ const ResumeForm = () => {
   return (
     <Container
       glass="base"
-      className="flex flex-col w-full p-4 self-stretch overflow-hidden"
+      className="flex flex-row lg:flex-col gap-4 w-full p-4 self-stretch overflow-hidden"
       sx={{ borderRadius: RADIUS.xxxLarge }}
     >
-      <Typography component="label" variant="labelL" color="textClearest">
+      <Typography
+        className="text-nowrap"
+        component="label"
+        variant="labelL"
+        color="textClearest"
+      >
         1. Document to scan
       </Typography>
       <FileUploadField

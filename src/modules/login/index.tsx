@@ -21,7 +21,7 @@ const Login = () => {
       <Container
         {...ANIM_FADE}
         glass="base"
-        className="p-4 max-w-200 w-full gap-4 flex flex-col items-center overflow-y-scroll"
+        className="p-4 max-w-200 w-full gap-4 flex flex-col items-center overflow-y-auto"
         sx={{ borderRadius: RADIUS.xxxLarge }}
       >
         <div className="w-full max-w-100 h-auto">
@@ -50,10 +50,20 @@ const Login = () => {
           )}
         </AnimatePresence>
         <div className="flex flex-col self-stretch w-full opacity-50">
-          <Typography align="center" component={"p"} variant="paragraphS" color="textClear">
+          <Typography
+            align="center"
+            component={"p"}
+            variant="paragraphS"
+            color="textClear"
+          >
             Developed by Robby Azucena as part of porfolio.
           </Typography>
-          <Typography align="center" component={"p"} variant="paragraphS" color="textClear">
+          <Typography
+            align="center"
+            component={"p"}
+            variant="paragraphS"
+            color="textClear"
+          >
             This website is powered by Vercel and Supabase
           </Typography>
         </div>

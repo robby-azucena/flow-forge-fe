@@ -17,6 +17,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { DARK_SCHEME, LIGHT_SCHEME } from "../theme/ColorScheme";
 import { RADIUS } from "@/constants/Radius";
 import { FieldValues } from "react-hook-form";
+import PrimaryIconButton from "../buttons/IconButton";
 
 interface PropType<T extends FieldValues> {
   label?: string;
@@ -57,12 +58,38 @@ const FileUploadField = <T extends FieldValues>({
       <Typography component={"label"} variant="labelM" color="textClear">
         {label}
       </Typography>
+      <Box className="lg:hidden  flex flex-col self-stretch gap-4">
+        <div className="flex  items-center-safe gap-2 self-stretch w-full">
+          <PrimaryButton
+            variant="outlined"
+            onClick={() => inputRef.current?.click()}
+            startIcon={<FileUploadIcon />}
+            label={`${files.length === 0 ? "Browse" : "Replace"} File${multiple ? "s" : ""}`}
+          />
+          {/* <PrimaryIconButton color="primary">
+            <FileUploadIcon />
+          </PrimaryIconButton> */}
+
+          <Typography variant="labelM" color="textClear">
+            Max file size: {maxSizeMB} MB
+          </Typography>
+        </div>
+
+        <input
+          ref={inputRef}
+          type="file"
+          hidden
+          multiple={multiple}
+          accept={accept}
+          onChange={handleInputChange}
+        />
+      </Box>
       <Box
         onDragOver={handleDragOver}
         onDragEnter={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        className="p-4 flex flex-col self-stretch gap-4"
+        className="p-4 hidden lg:flex flex-col self-stretch gap-4"
         sx={{
           border: "2px dashed",
           borderColor: isDragging ? "primary.main" : "grey.400",

@@ -58,7 +58,7 @@ const InformationForm = () => {
 
       <Container
         glass="base"
-        className="flex gap-4 items-center-safe w-full p-4 self-stretch"
+        className="flex lg:flex-row flex-col gap-4 items-center-safe w-full p-4 self-stretch"
         sx={{ borderRadius: RADIUS.xxLarge }}
       >
         <TextAreaField
