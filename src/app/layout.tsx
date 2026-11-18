@@ -36,7 +36,7 @@ export default function RootLayout({ children }: Readonly<PropType>) {
   return (
     <html
       lang="en"
-      className={`${spaceGrotesk.variable} ${hankenGrotesk.variable} h-full antialiased`}
+      className={`${spaceGrotesk.variable} ${hankenGrotesk.variable} h-full antialiased overflow-hidden`}
     >
       <body style={{ overflow: "hidden", padding: 0, margin: 0 }}>
         <ProviderContainer>{children}</ProviderContainer>

@@ -1,11 +1,9 @@
 import { ANIM_FADE } from "@/constants/Animation";
-import { RADIUS } from "@/constants/Radius";
-import Container from "@/shared/ui/Container";
 import EmailField from "@/shared/ui/form/EmailField";
 import { Typography } from "@mui/material";
 import PrimaryButton from "@/shared/ui/buttons/PrimaryButton";
 import TextButton from "@/shared/ui/buttons/TextButton";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import TextField from "@/shared/ui/form/TextFields";
 import PasswordField from "@/shared/ui/form/PasswordField";
 import {
@@ -141,7 +139,6 @@ const SignupForm = ({
         <TextButton
           onClick={onBack}
           label="Back to Sign In"
-          isLoading={isSignupSubmitting}
           disabled={isSignupSubmitting}
         />
       </div>

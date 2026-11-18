@@ -8,6 +8,7 @@ import { isAxiosError } from "axios";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { PATHNAMES } from "@/constants/Pathnames";
+import signupUser from "../services/signupUser";
 
 const useLogin = () => {
   const router = useRouter();
@@ -22,18 +23,22 @@ const useLogin = () => {
       },
     });
 
-  const { control: signupControl, handleSubmit: signupHandleSubmit,
-    getValues: signupGetValues, reset: signupReset, formState: signupFormState } =
-    useForm<SignupSchemaType>({
-      resolver: yupResolver(signupSchema),
-      defaultValues: {
-        firstName: "",
-        lastName: "",
-        emailAddress: "",
-        password: "",
-        confirmPassword: "",
-      },
-    });
+  const {
+    control: signupControl,
+    handleSubmit: signupHandleSubmit,
+    getValues: signupGetValues,
+    reset: signupReset,
+    formState: signupFormState,
+  } = useForm<SignupSchemaType>({
+    resolver: yupResolver(signupSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      emailAddress: "",
+      password: "",
+      confirmPassword: "",
+    },
+  });
 
   const showSnackbar = useSnackbar();
 
@@ -56,15 +61,15 @@ const useLogin = () => {
 
   const onSignupSubmit: SubmitHandler<SignupSchemaType> = async (data) => {
     try {
-      // logic for signup goes here
-      // e.g., await signupUser(data);
+      await signupUser(data);
       showSnackbar("Signup Successful", "success");
+      setTab('signin')
     } catch (err) {
       if (isAxiosError(err)) {
-        // handle error
+        showSnackbar(err.response?.data.detail, "error");
       }
       signupReset({ ...signupGetValues(), password: "", confirmPassword: "" });
-      showSnackbar("Signup Failed", "error");
+      
     }
   };
 
