@@ -46,7 +46,7 @@ const TextField = <T extends FieldValues>({
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <div className="flex flex-col  items-start w-full">
+        <div className="flex flex-col  items-start w-full gap-2">
           <Typography
             component={"label"}
             htmlFor={labelHtmlFor}

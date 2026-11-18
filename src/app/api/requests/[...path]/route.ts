@@ -1,65 +1,95 @@
 // app/api/requests/[...path]/route.ts
 import { cookies } from "next/headers";
 import { NextRequest } from "next/server";
+import { Readable } from "node:stream";
+import { AxiosError, AxiosResponse } from "axios";
 import rewriteSetCookie from "./services/rewriteSetCookie";
 import { STRIP_HEADERS } from "@/constants/Api";
+import { TOKEN } from "@/constants/App";
+import api from "@/lib/axios";
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL!;
+const FORWARDED_COOKIES = new Set([TOKEN.access, TOKEN.refresh]);
+
+const toResponse = (upstream: AxiosResponse) => {
+  const resHeaders = new Headers();
+
+  Object.entries(upstream.headers).forEach(([key, value]) => {
+    if (value === undefined || value === null) return;
+    if (key.toLowerCase() === "set-cookie") return; // handled below
+    resHeaders.set(
+      key,
+      Array.isArray(value) ? value.join(", ") : String(value),
+    );
+  });
+
+  STRIP_HEADERS.forEach((h) => resHeaders.delete(h));
+  // axios already decompressed the stream, so these no longer match the body
+  resHeaders.delete("content-encoding");
+  resHeaders.delete("content-length");
+
+  //NOTE - Multiple Set-Cookie headers must be handled individually
+  const setCookies = (upstream.headers["set-cookie"] ?? []) as string[];
+  setCookies.forEach((c) => {
+    const name = c.split("=")[0].trim();
+    if (FORWARDED_COOKIES.has(name)) {
+      resHeaders.append("set-cookie", rewriteSetCookie(c));
+    }
+  });
+
+  const noBody = [204, 205, 304].includes(upstream.status);
+
+  return new Response(
+    noBody ? null : (Readable.toWeb(upstream.data) as ReadableStream),
+    {
+      status: upstream.status,
+      statusText: upstream.statusText,
+      headers: resHeaders,
+    },
+  );
+};
 
 const handler = async (
   req: NextRequest,
   { params }: { params: Promise<{ path: string[] }> },
 ) => {
-  const FORWARDED_COOKIES = new Set(["access_token", "refresh_token"]);
   const { path } = await params;
-  const target = new URL(`${BASE_URL}${path.join("/")}/`);
 
+  const query = new URLSearchParams();
   req.nextUrl.searchParams.forEach((value, key) => {
-    if (value !== "") target.searchParams.append(key, value);
+    if (value !== "") query.append(key, value);
   });
 
-  const headers = new Headers(req.headers);
-  STRIP_HEADERS.forEach((h) => headers.delete(h));
+  const headers = Object.fromEntries(req.headers.entries());
+  STRIP_HEADERS.forEach((h) => delete headers[h.toLowerCase()]);
+  delete headers["authorization"];
+  delete headers["cookie"];
 
   const jar = await cookies();
-  const accessToken = jar.get("access_token")?.value;
-  const refreshToken = jar.get("refresh_token")?.value;
-
-  if (accessToken) headers.set("Authorization", `Bearer ${accessToken}`);
-  if (refreshToken) headers.set("cookie", `refresh_token=${refreshToken}`);
+  const refreshToken = jar.get(TOKEN.refresh)?.value;
+  if (refreshToken) headers["cookie"] = `${TOKEN.refresh}=${refreshToken}`;
 
   const hasBody = !["GET", "HEAD"].includes(req.method);
 
   try {
-    const upstream = await fetch(target, {
+    const upstream = await api.request({
+      url: `${path.join("/")}/`,
       method: req.method,
+      params: query,
       headers,
-      body: hasBody ? req.body : undefined,
-      ...(hasBody ? { duplex: "half" } : {}),
-      redirect: "manual",
-      cache: "no-store",
-    } as RequestInit);
-
-    const resHeaders = new Headers(upstream.headers);
-    STRIP_HEADERS.forEach((h) => resHeaders.delete(h));
-    resHeaders.delete("content-encoding");
-
-    //NOTE - Multiple Set-Cookie headers must be handled individually
-    resHeaders.delete("set-cookie");
-    upstream.headers.getSetCookie().forEach((c) => {
-      const name = c.split("=")[0].trim();
-      if (FORWARDED_COOKIES.has(name)) {
-        resHeaders.append("set-cookie", rewriteSetCookie(c));
-      }
+      data: hasBody ? Buffer.from(await req.arrayBuffer()) : undefined,
+      responseType: "stream",
+      maxRedirects: 0,
+      validateStatus: (status) => status < 400,
     });
 
-    return new Response(upstream.body, {
-      status: upstream.status,
-      statusText: upstream.statusText,
-      headers: resHeaders,
-    });
+    return toResponse(upstream);
   } catch (error) {
-    console.error("[Proxy] Upstream failure:", target.toString(), error);
+    // Upstream answered with an error status: pass it through untouched
+    if (error instanceof AxiosError && error.response) {
+      return toResponse(error.response);
+    }
+
+    console.error("[Proxy] Upstream failure:", path.join("/"), error);
     return Response.json({ error: "Bad gateway" }, { status: 502 });
   }
 };

@@ -16,7 +16,7 @@ const Background = () => {
   };
 
   return (
-    <Box className="absolute top-0 left-0 h-dvh w-dvw -z-20" sx={{backgroundColor: background?.default}}>
+    <Box className="absolute top-0 left-0 h-dvh w-dvw -z-20 overflow-hidden" sx={{backgroundColor: background?.default}}>
       <Box
         id="glow-1"
         sx={[

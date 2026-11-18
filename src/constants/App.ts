@@ -11,3 +11,8 @@ export const NAVIGATION = {
 };
 
 export const REDIRECT_DELAY = 1000;
+
+export const TOKEN = {
+  access: "access_token",
+  refresh: "refresh_token"
+}
